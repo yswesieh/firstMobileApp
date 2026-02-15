@@ -8,6 +8,8 @@ import {
 import { useForm } from "react-hook-form";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FormInput } from "@/components/ui/FormInput";
+import { router } from "expo-router";
+import {Image} from "expo-image";
 
 type FormData = {
     email: string;
@@ -19,11 +21,13 @@ export default function LoginScreen() {
 
     const onSubmit = (data: FormData) => {
         Alert.alert("Login Data", JSON.stringify(data));
+        router.push("/");
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login Page</Text>
+            <Image source={require('@/assets/images/react-logo.png')} style={styles.reactLogo} />
 
             <FormInput
                 name="email"
@@ -89,5 +93,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 16,
         fontWeight: "600",
+    },
+    reactLogo: {
+        height: 178,
+        width: 290,
     },
 });
