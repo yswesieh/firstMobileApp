@@ -1,56 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Text,
     StyleSheet,
     Alert,
-    Pressable,
-    View,
-    TextInput,
+    Pressable, View, TextInput,
 } from "react-native";
-import {Controller, useForm} from "react-hook-form";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FormInput } from "@/components/ui/FormInput";
-import { router } from "expo-router";
 import {Image} from "expo-image";
+import NewComponent from "@/components/new-component";
 
-type FormData = {
-    email: string;
-    password: string;
-};
+export default function Login2Screen() {
 
-export default function LoginScreen() {
-    const { control, handleSubmit } = useForm<FormData>({ mode: "all" });
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const onSubmit = (data: FormData) => {
-        Alert.alert("Login Data", JSON.stringify(data));
-        // router.push("/");
+    const handleEmailChange = (text: any) => {
+        setEmail(text);
+    }
 
+    const handlePasswordChange = (text: any) => {
+        setPassword(text);
+    }
+
+    const onSubmit = () => {
+        console.log(`Login email: ${email}, password: ${password}`);
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Login Page</Text>
             <Image source={require('@/assets/images/react-logo.png')} style={styles.reactLogo} />
-            <Controller
-                control={control}
-                name={"email"}
-                render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-                    <View>
-                        <Text style={styles.label}>Email</Text>
-                        <TextInput
-                            style={[styles.input, error && styles.errorInput]}
-                            onBlur={onBlur}
-                            onChangeText={onChange}
-                            value={value}
-                            placeholder="Email"
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                        />
-                    </View>
-                )}
-            ></Controller>
+            <View style={styles.container}>
+                <Text style={styles.label}>Email</Text>
+                <TextInput
+                    style={[styles.input]}
+                    onChangeText={handleEmailChange}
+                    value={email}
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                />
+            </View>
+            <View style={styles.container}>
+                <Text style={styles.label}>Password</Text>
+                <TextInput
+                    style={[styles.input]}
+                    onChangeText={handlePasswordChange}
+                    value={password}
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    secureTextEntry={true}
+                />
+            </View>
+            <NewComponent name={"test"} email={email} password={password} />
             <Pressable
-                onPress={handleSubmit(onSubmit)}
+                onPress={onSubmit}
                 style={({ pressed }) => [
                     styles.button,
                     pressed && { opacity: 0.7 },
