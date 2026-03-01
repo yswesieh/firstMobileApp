@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FormInput } from "@/components/ui/FormInput";
 import { router } from "expo-router";
 import {Image} from "expo-image";
-
+import { login } from "@/api/UsersService"
 type FormData = {
     email: string;
     password: string;
@@ -21,9 +21,14 @@ type FormData = {
 export default function LoginScreen() {
     const { control, handleSubmit } = useForm<FormData>({ mode: "all" });
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
         Alert.alert("Login Data", JSON.stringify(data));
-        // router.push("/");
+        try {
+            const response = await login(data);
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
 
     };
 
