@@ -1,13 +1,17 @@
+import {StyleSheet, Text, View} from "react-native";
 import {Link} from "expo-router";
 import {Image} from "expo-image";
-import {StyleSheet, Text, View} from "react-native";
 
-const ProductCard = ({ id, name, price, imageUrl }: any) => {
+const ProductCard = ({id, name, price, imageUrl}: any) => {
+
     return (
         <View style={styles.productCard} key={id}>
             <Link href={"/product-details/" + id }>
                 <Image style={styles.image} source={{uri: imageUrl}} />
-                <Text style={styles.title}>{name} {price}</Text>
+                <View style={styles.title}>
+                    <Text>{name}</Text>
+                    <Text>${price}</Text>
+                </View>
             </Link>
         </View>
     )
@@ -26,10 +30,15 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "700",
         marginTop: 32,
         textAlign: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flex: 1,
+        width: '100%',
     },
     image: {
         height: 178,
