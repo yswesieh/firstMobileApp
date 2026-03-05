@@ -2,6 +2,8 @@ import {View, Text, StyleSheet, ScrollView} from "react-native";
 import {useEffect, useState} from "react";
 import {getProducts} from "@/api/ProductsService";
 import {Image} from "expo-image";
+import {Link} from "expo-router";
+import ProductCard from "@/components/product-card";
 
 const Products = () => {
 
@@ -23,16 +25,10 @@ const Products = () => {
 
     return (
         <View>
-            <Text>Products</Text>
+            <Text style={styles.title}>Products</Text>
             <ScrollView>
-                {products?.map(({ id, name, description, imageUrl, price }: any) => (
-                    <View style={styles.productCard} key={id}>
-                        <Text>{name}</Text>
-                        <Text>{description}</Text>
-                        <Image style={styles.image} source={{uri: imageUrl}} />
-                        <Text>{price}</Text>
-                        <Text>{id}</Text>
-                    </View>
+                {products?.map((product: any) => (
+                    <ProductCard key={product.id} {...product} />
                 ))}
             </ScrollView>
         </View>
@@ -47,27 +43,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#f9fafb",
     },
-    productCard: {
-        flex: 1,
-        padding: 40,
-        justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 1,
-        borderColor: "#ddd",
-        borderRadius: 10,
-        margin: 20,
-        textAlign: "center",
-    },
     title: {
         fontSize: 28,
         fontWeight: "700",
-        marginBottom: 32,
+        margin: 32,
         textAlign: "center",
     },
-    image: {
-        height: 178,
-        width: 290,
-    },
+    // button: {
+    //     backgroundColor: "#2563eb",
+    //     paddingVertical: 14,
+    //     borderRadius: 10,
+    // }
 });
 
 export default Products;
