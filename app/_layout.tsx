@@ -5,46 +5,49 @@ import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import ProductList from "@/app/(tabs)/product-list";
+import {QueryClientProvider} from "@tanstack/react-query";
+import {queryClient} from "@/lib/queryClient";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-        <Tabs.Screen
-            name="login"
+      <QueryClientProvider client={queryClient}>
+          <Tabs
+          screenOptions={{
+            tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+            headerShown: false,
+            tabBarButton: HapticTab,
+          }}>
+          <Tabs.Screen
+            name="index"
             options={{
-                title: 'Login',
-                tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+              title: 'Home',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
             }}
-        />
-        <Tabs.Screen
-            name="products"
-            options={{
-                title: 'Products',
-                tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-            }}
-        />
-        <Tabs.Screen
-            name="Product-list"
-            options={{
-                title: 'Product List',
-                tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-            }}
-        />
-    </Tabs>
+          />
+            <Tabs.Screen
+                name="login"
+                options={{
+                    title: 'Login',
+                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+                }}
+            />
+            <Tabs.Screen
+                name="products"
+                options={{
+                    title: 'Products',
+                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+                }}
+            />
+            <Tabs.Screen
+                name="Product-list"
+                options={{
+                    title: 'Product List',
+                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+                }}
+            />
+        </Tabs>
+      </QueryClientProvider>
   );
 }
