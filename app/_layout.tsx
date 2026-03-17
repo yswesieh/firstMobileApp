@@ -1,53 +1,29 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { Stack } from 'expo-router';
 import {QueryClientProvider} from "@tanstack/react-query";
 import {queryClient} from "@/lib/queryClient";
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+// import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
 
-  return (
-      <QueryClientProvider client={queryClient}>
-          <Tabs
-          screenOptions={{
-            tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-            headerShown: false,
-            tabBarButton: HapticTab,
-          }}>
-          <Tabs.Screen
-            name="index"
-            options={{
-              title: 'Home',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-            }}
-          />
-            <Tabs.Screen
-                name="login"
-                options={{
-                    title: 'Login',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-                }}
-            />
-            <Tabs.Screen
-                name="products"
-                options={{
-                    title: 'Products',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-                }}
-            />
-            <Tabs.Screen
-                name="Product-list"
-                options={{
-                    title: 'Product List',
-                    tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-                }}
-            />
-        </Tabs>
-      </QueryClientProvider>
-  );
+import { useColorScheme } from '@/hooks/use-color-scheme';
+
+export const unstable_settings = {
+    anchor: '(tabs)',
+};
+
+export default function RootLayout() {
+    const colorScheme = useColorScheme();
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+                <Stack>
+                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                    <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+                </Stack>
+                {/*<StatusBar style="auto" />*/}
+            </ThemeProvider>
+        </QueryClientProvider>
+    );
 }
