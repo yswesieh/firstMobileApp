@@ -1,5 +1,4 @@
 import {View, Text, StyleSheet, ScrollView, Pressable} from "react-native";
-import {useEffect, useState} from "react";
 import {addProduct, getProducts} from "@/api/ProductsService";
 
 import ProductCard from "@/components/product-card";
@@ -18,14 +17,9 @@ const Products = () => {
         mutate(data);
     }
 
-    const fetchData = async () => {
-            const response = await getProducts();
-            return response.data;
-    }
-
     const { data, isLoading, error } = useQuery({
         queryKey: ["products"],
-        queryFn: fetchData,
+        queryFn: getProducts,
     })
 
     const { mutate } = useMutation({
