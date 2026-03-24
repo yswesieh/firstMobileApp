@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import {Platform, Pressable, StyleSheet} from 'react-native';
 
 import { Collapsible } from '@/components/ui/collapsible';
 import { ExternalLink } from '@/components/external-link';
@@ -9,9 +9,15 @@ import { ThemedView } from '@/components/themed-view';
 // import { IconSymbol } from '@/components/ui/icon-symbol';
 import { IconSymbol } from '../../components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
+import {router} from "expo-router";
 
 export default function TabTwoScreen() {
-  return (
+
+    const handleOnPress = () => {
+        router.back();
+    }
+
+    return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
@@ -31,7 +37,8 @@ export default function TabTwoScreen() {
           Explore
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+        <Pressable onPress={handleOnPress}>back</Pressable>
+        <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}

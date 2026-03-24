@@ -1,12 +1,16 @@
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Pressable} from "react-native";
 import {useEffect, useState} from "react";
 import {getProductById} from "@/api/ProductsService";
 import {Image} from "expo-image";
-import {useLocalSearchParams} from "expo-router";
+import {router, useLocalSearchParams} from "expo-router";
 
 const ProductDetails = () => {
     const [productDetails, setProductDetails] = useState<any>({});
     const { id } = useLocalSearchParams();
+
+    const handleOnPress = () => {
+        router.replace('/login2');
+    }
 
     const fetchData = async () => {
         const response = await getProductById(id);
@@ -21,6 +25,7 @@ const ProductDetails = () => {
         <View>
             <Image style={styles.image} source={{uri: productDetails?.imageUrl}} />
             <Text style={styles.text}>{productDetails?.description}</Text>
+            <Pressable onPress={handleOnPress}>Go to login2</Pressable>
         </View>
     )
 }

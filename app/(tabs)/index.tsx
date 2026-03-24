@@ -1,4 +1,5 @@
 import {Text, TextInput, StyleSheet, Pressable, FlatList, View} from "react-native";
+import {router} from "expo-router";
 // import {Image} from "expo-image";
 
 const DATA = [
@@ -31,10 +32,16 @@ function HomeScreen () {
         console.log("1111");
     }
 
+    const handleOnPress = () => {
+        router.back();
+    }
+
 
     return (
         <View style={styles.container}>
             <Text>Hello</Text>
+            <Pressable onPress={handleOnPress}>back</Pressable>
+
             {/*<Image style={styles.image} source={require('@/assets/images/react-logo.png')} />*/}
             <TextInput onChangeText={handleTextChange} />
             <Pressable onPress={onPressFunction}>

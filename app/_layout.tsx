@@ -7,6 +7,8 @@ import {queryClient} from "@/lib/queryClient";
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import ProductDetails from "@/app/product-details/[id]";
+import {Layout} from "react-native-reanimated";
 
 export const unstable_settings = {
     anchor: '(tabs)',

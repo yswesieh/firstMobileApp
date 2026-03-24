@@ -22,15 +22,12 @@ export default function LoginScreen() {
     const { control, handleSubmit } = useForm<FormData>({ mode: "all" });
 
     const onSubmit = async (data: FormData) => {
-        Alert.alert("Login Data", JSON.stringify(data));
-        try {
-            const response = await login(data);
-            console.log(response);
-        } catch (e) {
-            console.log(e);
-        }
-
+        router.push('/products')
     };
+    const handleOnPress = () => {
+        router.back();
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -61,8 +58,10 @@ export default function LoginScreen() {
                     pressed && { opacity: 0.7 },
                 ]}
             >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Products</Text>
             </Pressable>
+            <Pressable onPress={handleOnPress}>back</Pressable>
+
         </SafeAreaView>
     );
 }

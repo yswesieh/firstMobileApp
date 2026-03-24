@@ -8,6 +8,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import {Image} from "expo-image";
 import NewComponent from "@/components/new-component";
+import {router} from "expo-router";
 
 export default function Login2Screen() {
 
@@ -23,7 +24,7 @@ export default function Login2Screen() {
     }
 
     const onSubmit = () => {
-        console.log(`Login email: ${email}, password: ${password}`);
+        router.back()
     };
 
     return (
@@ -60,7 +61,7 @@ export default function Login2Screen() {
                     pressed && { opacity: 0.7 },
                 ]}
             >
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Back</Text>
             </Pressable>
         </SafeAreaView>
     );
