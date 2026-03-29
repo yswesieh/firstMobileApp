@@ -2,16 +2,20 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
 import {useUser} from "@/context/UserContext";
 
-const D = ({ onChange, email }: any) => {
-    const { user } = useUser();
+const D = () => {
+    const { user, setUser } = useUser();
+
+    const onChange = (text: string) => {
+        setUser({email: text, name: user.name});
+    }
 
     return (
         <View>
-            <Text>Ddddd {email}</Text>
+            <Text>D: User Email {user.email}</Text>
             <TextInput
                 style={[styles.input]}
                 onChangeText={onChange}
-                value={email}
+                value={user?.email}
                 placeholder="Email"
                 keyboardType="email-address"
                 autoCapitalize="none"
