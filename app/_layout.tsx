@@ -9,6 +9,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import ProductDetails from "@/app/product-details/[id]";
 import {Layout} from "react-native-reanimated";
+import {UserProvider} from "@/context/UserContext";
 
 export const unstable_settings = {
     anchor: '(tabs)',
@@ -20,10 +21,12 @@ export default function RootLayout() {
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                    <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-                </Stack>
+                <UserProvider>
+                    <Stack>
+                        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+                    </Stack>
+                </UserProvider>
                 {/*<StatusBar style="auto" />*/}
             </ThemeProvider>
         </QueryClientProvider>

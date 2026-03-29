@@ -1,12 +1,14 @@
 import {Text, View} from "react-native";
 import React from "react";
-import C from "@/components/C";
+import {useUser} from "@/context/UserContext";
 
-const A = ({email}: any) => {
+const A = () => {
+
+    const { user } = useUser();
 
     return (
         <View>
-            <Text>A {email}</Text>
+            <Text>A user email: {user.email}</Text>
         </View>
 
     )

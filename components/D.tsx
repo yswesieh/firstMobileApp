@@ -1,7 +1,9 @@
 import {StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
+import {useUser} from "@/context/UserContext";
 
 const D = ({ onChange, email }: any) => {
+    const { user } = useUser();
 
     return (
         <View>
@@ -14,6 +16,9 @@ const D = ({ onChange, email }: any) => {
                 keyboardType="email-address"
                 autoCapitalize="none"
             />
+
+            <Text>UserName: {user?.name}</Text>
+            <Text>Email: {user?.email}</Text>
         </View>
 
     )
