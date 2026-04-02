@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, ScrollView, Pressable} from "react-native";
-import {addProduct, getProducts} from "@/api/ProductsService";
+import {addProduct, getProducts} from "@/services/ProductsService";
 
 import ProductCard from "@/components/product-card";
 import {useMutation, useQuery} from "@tanstack/react-query";

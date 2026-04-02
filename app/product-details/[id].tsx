@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet, Pressable} from "react-native";
 import {useEffect, useState} from "react";
-import {getProductById} from "@/api/ProductsService";
+import {getProductById} from "@/services/ProductsService";
 import {Image} from "expo-image";
 import {router, useLocalSearchParams} from "expo-router";
 

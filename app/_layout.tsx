@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import {router, Stack} from 'expo-router';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {queryClient} from "@/lib/queryClient";
 
@@ -7,9 +7,9 @@ import {queryClient} from "@/lib/queryClient";
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import ProductDetails from "@/app/product-details/[id]";
-import {Layout} from "react-native-reanimated";
 import {UserProvider} from "@/context/UserContext";
+import StorageService from "@/services/StorageService";
+import {useEffect} from "react";
 
 export const unstable_settings = {
     anchor: '(tabs)',
@@ -17,6 +17,15 @@ export const unstable_settings = {
 
 export default function RootLayout() {
     const colorScheme = useColorScheme();
+
+    // useEffect(async () => {
+    //     const token = await StorageService.getToken();
+    //     if (!token) {
+    //         router.push('/login');
+    //     }
+    // });
+    //
+
 
     return (
         <QueryClientProvider client={queryClient}>

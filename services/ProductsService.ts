@@ -1,4 +1,4 @@
-import ApiBase from "@/api/ApiBase";
+import ApiBase from "@/services/ApiBase";
 
 export const getProducts = async () => {
     const response = await ApiBase.get('/api/v1/products');

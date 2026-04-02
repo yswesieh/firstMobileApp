@@ -1,4 +1,6 @@
 import axios from 'axios';
+import * as SecureStore from "expo-secure-store";
+import StorageService from "@/services/StorageService";
 
 export const API_URL = "https://69a3f823611ecf5bfc23e67f.mockapi.io";
 
@@ -22,8 +24,8 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-    (config) => {
-        const token = "token";
+    async (config) => {
+        const token = await StorageService.getToken();
         const tokenType = "Bearer";
         if (token) {
             config.headers.Authorization = `${tokenType} ${token}`;

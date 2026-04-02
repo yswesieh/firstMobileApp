@@ -1,20 +1,34 @@
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import A from "@/components/A";
 import B from "@/components/B";
-import D from "@/components/D";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import StorageService from "@/services/StorageService";
 
 function HomeScreen () {
-    const [email, setEmail] = useState<string>("");
+    const [user, setUser] = useState<any>("");
 
-    const onChange = (text: string) => {
-        setEmail(text)
+    const logout = async () => {
+        StorageService.removeToken();
+        StorageService.clearAsyncStorage();
     }
+
+    const getData = async () => {
+        try {
+            const data = await StorageService.getUser();
+            setUser(data);
+        } catch (e) {
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
 
     return (
         <View style={styles.container}>
-            <A email={email}></A>
-            <B onChange={onChange} email={email}></B>
+            <Text>{user.firstName}</Text>
+            <A></A>
+            <B></B>
         </View>
     )
 

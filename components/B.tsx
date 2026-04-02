@@ -1,5 +1,5 @@
 import {Pressable, Text, View} from "react-native";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import C from "@/components/C";
 import useCounter from "@/hooks/use-counter";
 
