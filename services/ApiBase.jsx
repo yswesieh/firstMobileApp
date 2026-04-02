@@ -1,12 +1,11 @@
 import axios from 'axios';
-import * as SecureStore from "expo-secure-store";
 import StorageService from "@/services/StorageService";
 
 export const API_URL = "https://69a3f823611ecf5bfc23e67f.mockapi.io";
 
 const handleErrors = async (err) => {
     if (err?.response?.status === 401) {
-      window.location.href = "/login";
+        console.log("Unauthorize");
     } else if (err?.response?.status === 403) {
         console.log("You don't have permission to access this resource");
     } else if (err?.response?.status === 500) {
@@ -16,7 +15,6 @@ const handleErrors = async (err) => {
     }
     return Promise.reject(err);
 };
-
 
 const axiosInstance = axios.create({
     baseURL: `${API_URL}`,

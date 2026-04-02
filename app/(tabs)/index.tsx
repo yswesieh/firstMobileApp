@@ -31,7 +31,6 @@ function HomeScreen () {
             <B></B>
         </View>
     )
-
 }
 
 const styles = StyleSheet.create({

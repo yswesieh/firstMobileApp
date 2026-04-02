@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { FormInput } from "@/components/ui/FormInput";
 import { router } from "expo-router";
 import {Image} from "expo-image";
-import { login } from "@/services/UsersService"
+import { login } from "@/services/AuthService"
 import StorageService from "@/services/StorageService";
 type FormData = {
     email: string;

@@ -1,5 +1,5 @@
 import ApiBase from "@/services/ApiBase";
-import {LOGIN_API, USERS_API} from "@/constants/api";
+import {USERS_API} from "@/constants/api";
 
 export const getCurrentUser = async (filters: any): Promise<Response> => {
     const token = "token";
@@ -18,15 +18,6 @@ export const getCurrentUser = async (filters: any): Promise<Response> => {
 export const getCurrentUser2 = async (filters: any) => {
     return await ApiBase.post(USERS_API, filters);
 }
-
-export const login = async (payload: any) => {
-    return await ApiBase.post(LOGIN_API, payload);
-}
-
-export const logout = async () => {
-    return await ApiBase.get('/api/v1/logout');
-}
-
 
 
 
