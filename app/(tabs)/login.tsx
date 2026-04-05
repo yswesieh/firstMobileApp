@@ -2,14 +2,12 @@ import React from "react";
 import {
     Text,
     StyleSheet,
-    Alert,
     Pressable,
     View,
     TextInput,
 } from "react-native";
 import {Controller, useForm} from "react-hook-form";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FormInput } from "@/components/ui/FormInput";
 import { router } from "expo-router";
 import {Image} from "expo-image";
 import { login } from "@/services/AuthService"
@@ -24,13 +22,8 @@ export default function LoginScreen() {
     const { control, handleSubmit } = useForm<FormData>({ mode: "all" });
 
     const onSubmit = async (data: FormData) => {
-        // const response = login(data);
-        // responseData = response.data
-        const responseData: any = {
-            token: "sedrfhjgutftyfuyfgtufyugfuguygytgyhuji",
-            user: { email: "yguyt@rfgv.com", firstName: "ygtuyf", lastName: "trdrt", role: "x" }, };
-        await StorageService.saveToken(responseData.token);
-        await StorageService.saveUser(responseData.user);
+        const user = await login(data);
+        console.log(user);
         router.push('/products');
     };
     const handleOnPress = () => {
