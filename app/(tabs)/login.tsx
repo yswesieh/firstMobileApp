@@ -11,7 +11,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import {Image} from "expo-image";
 import { login } from "@/services/AuthService"
-import StorageService from "@/services/StorageService";
 type FormData = {
     email: string;
     password: string;
@@ -22,9 +21,13 @@ export default function LoginScreen() {
     const { control, handleSubmit } = useForm<FormData>({ mode: "all" });
 
     const onSubmit = async (data: FormData) => {
-        const user = await login(data);
-        console.log(user);
-        router.push('/products');
+        try {
+            const user = await login(data);
+            console.log(user);
+            router.push('/products');
+        } catch (error) {
+            console.log(error);
+        }
     };
     const handleOnPress = () => {
         router.back();

@@ -1,4 +1,6 @@
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
+import { TextInput } from 'react-native-paper';
+
 import React from "react";
 import {useUser} from "@/context/UserContext";
 
@@ -13,7 +15,6 @@ const C = () => {
         <View>
             <Text>C</Text>
             <TextInput
-                style={[styles.input]}
                 onChangeText={onChange}
                 value={user?.email}
                 placeholder="Email"

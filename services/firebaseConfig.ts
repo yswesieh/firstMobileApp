@@ -1,14 +1,18 @@
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCESfHdT4LRG72kpYkXYYXiEjlnfyoVqQY",
-    authDomain: "firstmobile3.firebaseapp.com",
-    projectId: "firstmobile3",
-    storageBucket: "firstmobile3.firebasestorage.app",
-    messagingSenderId: "382232336761",
-    appId: "1:382232336761:web:ef374ffe73be6632f377a8"
+    apiKey: "AIzaSyBYWoWB7ind2OIxZK-_-59qI5IrMUfHKK0",
+    authDomain: "firstmobile2.firebaseapp.com",
+    databaseURL: "https://firstmobile2-default-rtdb.firebaseio.com",
+    projectId: "firstmobile2",
+    storageBucket: "firstmobile2.firebasestorage.app",
+    messagingSenderId: "622123612182",
+    appId: "1:622123612182:web:6e198ce1f36967f3b7dd37"
 };
 
 const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app)
 
 export default app;

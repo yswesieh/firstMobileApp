@@ -1,9 +1,8 @@
 import {View, Text, StyleSheet, ScrollView, Pressable} from "react-native";
-import {addProduct, getProducts} from "@/services/ProductsService";
 
 import ProductCard from "@/components/product-card";
-import {useMutation, useQuery} from "@tanstack/react-query";
-import {queryClient} from "@/lib/queryClient";
+import {useProducts} from "@/hooks/use-products";
+import {useCreateProduct} from "@/hooks/use-create-product";
 
 const Products = () => {
 
@@ -17,18 +16,10 @@ const Products = () => {
         mutate(data);
     }
 
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["products"],
-        queryFn: getProducts,
-    })
+    const { data, isLoading, error } = useProducts();
 
-    const { mutate } = useMutation({
-        mutationKey: ["addProducts"],
-        mutationFn: addProduct,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["products"] });
-        }
-    })
+
+    const { mutate } = useCreateProduct();
 
     if(isLoading) return (
         <View style={{ marginTop: 20}}>

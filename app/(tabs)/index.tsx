@@ -20,9 +20,9 @@ function HomeScreen () {
         }
     }
 
-    useEffect(() => {
-        getData();
-    }, []);
+    // useEffect(() => {
+    //     getData();
+    // }, []);
 
     return (
         <View style={styles.container}>
