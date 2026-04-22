@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, ScrollView, Pressable} from "react-native";
 import ProductCard from "@/components/product-card";
 import {useProducts} from "@/hooks/use-products";
 import {useCreateProduct} from "@/hooks/use-create-product";
+import type { Product } from "@/types/product";
 
 const Products = () => {
 
@@ -42,7 +43,7 @@ const Products = () => {
                 </Pressable>
             </View>
             <ScrollView style={{ height: 500 }}>
-                {data?.map((product : any) => (
+                {data?.map((product: Product) => (
                     <ProductCard key={product.id} {...product} />
                 ))}
             </ScrollView>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: 40,
         marginEnd: 24,
-    }
+    },
 });
 
 export default Products;

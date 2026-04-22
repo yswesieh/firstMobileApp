@@ -6,7 +6,7 @@ const ProductCard = ({id, name, price, imageUrl}: any) => {
 
     return (
         <View style={styles.productCard} key={id}>
-            <Link href={"/product-details/" + id }>
+            <Link href={{ pathname: "/product-details/[id]", params: { id: String(id) } }}>
                 <Image style={styles.image} source={{uri: imageUrl}} />
                 <View style={styles.title}>
                     <Text>{name}</Text>
