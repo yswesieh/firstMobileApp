@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBYWoWB7ind2OIxZK-_-59qI5IrMUfHKK0",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "firstmobile2.firebaseapp.com",
     databaseURL: "https://firstmobile2-default-rtdb.firebaseio.com",
     projectId: "firstmobile2",
