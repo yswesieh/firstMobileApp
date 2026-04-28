@@ -39,7 +39,25 @@
           }
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow access to your camera"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow access to your location"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow access to your microphone"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

@@ -37,6 +37,13 @@ export default function TabLayout() {
                 tabBarIcon: ({ color }) => <IconSymbol size={28} name="externaldrive.fill" color={color} />,
             }}
         />
+        <Tabs.Screen
+            name="device-featuress-screen"
+            options={{
+                title: 'SQLite',
+                tabBarIcon: ({ color }) => <IconSymbol size={28} name="externaldrive.fill" color={color} />,
+            }}
+        />
       </Tabs>
   );
 }
